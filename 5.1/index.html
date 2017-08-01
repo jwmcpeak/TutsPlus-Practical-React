@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title></title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <style>
+            body {
+                padding: 10px;
+                margin: 10px;
+                font-size: 3.25em;
+            }
+            
+            .menu div {
+                padding: 2px;
+            }
+
+            .menu .menu-item {
+                width: 300px;
+                cursor: pointer;
+                background-color:lightgray;
+            }
+
+            .menu .menu-item:hover {
+                color: white;
+                background-color:lightslategray;
+            }
+
+            .menu .menu-item.active {
+                color: white;
+                background-color:cornflowerblue;
+            }
+            </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="text/babel">
+           class Menu extends React.Component {
+                constructor(props) {
+                    super(props);
+
+                    this.updateTotal = this.updateTotal.bind(this);
+
+                    this.state = {
+                        total: 0
+                    };
+                }
+
+                updateTotal(amount) {
+                    this.setState({
+                        total: this.state.total + amount
+                    });
+                }
+
+                render() {
+                    let menuItems = this.props.items.map((item, index) => 
+                        <MenuItem key={index} {...item} updateTotal={this.updateTotal} />
+                    );
+
+                    return (
+                        <div>
+                            <div className="menu">
+                                {menuItems}
+                            </div>
+                            <div>Total: ${this.state.total}</div>
+                        </div>
+                    );
+                }
+           }
+
+           class MenuItem extends React.Component {
+                constructor(props) {
+                    super(props);
+
+                    this.clickHandler = this.clickHandler.bind(this);
+
+                    this.state = {
+                        active: 0
+                    };
+                }
+
+                clickHandler() {
+                    let active = !this.state.active;
+
+                    this.props.updateTotal(active ? this.props.price : -this.props.price);
+
+                    this.setState({
+                        active
+                    });
+                }
+
+                render() {
+                    let className = 'menu-item';
+
+                    if (this.state.active) {
+                        className += ' active';
+                    }
+
+                    return (
+                        <div className={className} onClick={this.clickHandler}>
+                            {this.props.name} (${this.props.price})
+                        </div>
+                    );
+                }
+           }
+
+            let menuItems = [{
+                name: 'Sandwich',
+                price: 4
+            }, {
+                name: 'Chips',
+                price: 1
+            }, {
+                name: 'Drink',
+                price: 2
+            }];
+
+            ReactDOM.render(
+                <Menu items={menuItems} />,
+                document.getElementById('app')
+            );
+
+        </script>
+    </body>
+</html>

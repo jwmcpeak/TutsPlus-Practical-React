@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <title></title>
+        <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+        <style>
+            .content h1 {
+                text-decoration: underline;
+            }
+
+            .content p {
+                font-weight: bold;
+                color: red;
+            }
+            </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            let container = React.DOM.div({
+                    id: 'my-simple-content',
+                    className: 'content' 
+                    // style: {
+                    //     color: 'red',
+                    //     backgroundColor: 'blue'
+                    // }
+                }, 
+                React.DOM.h1(null, 'Hello, World!'),
+                React.DOM.p(null, 'This content is in a paragraph.')
+            );
+            ReactDOM.render(
+                container,
+                document.getElementById('app')
+            );
+
+        </script>
+    </body>
+</html>

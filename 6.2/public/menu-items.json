@@ -1,0 +1,14 @@
+[
+    {
+        "text": "Ajax Home",
+        "href": "/home"
+    },
+    {
+        "text": "Ajax About",
+        "href": "/about"
+    },
+    {
+        "text": "Ajax Contact",
+        "href": "/contact"
+    }
+]

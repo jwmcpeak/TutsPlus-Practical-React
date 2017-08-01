@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title></title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="text/babel">
+
+            let buttonItems = [
+                'Home',
+                'Edit',
+                'Help'
+            ];
+
+            let buttonItems2 = [
+                'Profile',
+                'Logout'
+            ];
+
+            function ButtonGroup(props) {
+
+                let items = props.items.map((item, index) => 
+                    <ButtonGroupItem key={index} text={item} />
+                );
+
+                // this is the same thing
+                // let items = props.items.map(function (item) {
+                //     return <button type="button" className="btn btn-default">{item}</button>
+                // });
+
+                return (
+                    <div className="btn-group" role="group">
+                        {items}
+                    </div>
+                );
+            }
+
+            function ButtonGroupItem(props) {
+                return (
+                    <button type="button" className="btn btn-default">{props.text}</button>
+                );
+            }
+
+            ReactDOM.render(
+                <div>
+                    <ButtonGroup items={buttonItems} />
+                    <br/><br/>
+                    <ButtonGroup items={buttonItems2} />
+                </div>,
+                document.getElementById('app')
+            );
+
+        </script>
+    </body>
+</html>

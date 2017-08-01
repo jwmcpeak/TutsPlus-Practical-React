@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <title></title>
+        <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            let container = React.DOM.div(null, 
+                React.DOM.h1(null, 'Hello, World!'),
+                React.DOM.p(null, 'This content is in a paragraph.')
+            );
+            ReactDOM.render(
+                container,
+                document.getElementById('app')
+            );
+
+        </script>
+    </body>
+</html>
